@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "123161869100",
+    "project_id": "notification-hacked",
+    "storage_bucket": "notification-hacked.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:123161869100:android:4c99b86bf243a3c4d38a89",
+        "android_client_info": {
+          "package_name": "com.notificationlogger"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAkpblgkWt8jnvg88azlsesgjTUUqJhv4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

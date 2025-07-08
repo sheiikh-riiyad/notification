@@ -16,6 +16,7 @@ import org.json.JSONArray
 import java.io.File
 
 class MainActivity : ComponentActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -33,17 +34,9 @@ class MainActivity : ComponentActivity() {
         val context = this
         val notifications = remember { mutableStateListOf<String>() }
 
+        // Load notifications from file on start
         LaunchedEffect(Unit) {
-            val file = File(context.filesDir, "notification.txt")
-            if (file.exists()) {
-                try {
-                    file.forEachLine {
-                        notifications.add(it)
-                    }
-                } catch (e: Exception) {
-                    e.printStackTrace()
-                }
-            }
+            loadJsonNotifications(context, notifications)
         }
 
         Scaffold(
@@ -69,5 +62,24 @@ class MainActivity : ComponentActivity() {
                 }
             }
         )
+    }
+
+    private fun loadJsonNotifications(context: ComponentActivity, notifications: MutableList<String>): List<String> {
+        val file = File(context.filesDir, "notifications.json")
+        if (file.exists()) {
+            try {
+                val json = JSONArray(file.readText())
+                val result = mutableListOf<String>()
+                for (i in 0 until json.length()) {
+                    result.add(json.getString(i))
+                }
+                notifications.clear()
+                notifications.addAll(result)
+                return result
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+        }
+        return emptyList()
     }
 }
